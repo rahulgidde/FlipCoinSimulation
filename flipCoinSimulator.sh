@@ -18,9 +18,9 @@ TRIPLET=3
 #FLIP A COIN AND CHECK HEAD OR TAIL
 function getflip
 {
-	for(( index1=0; index1<$number; index1++))
+	for(( index1=0; index1<$number; index1++ ))
 	do
-		for(( index2=0; index2<$choice; index2++))
+		for(( index2=0; index2<$choice; index2++ ))
 		do
 			randomcheck=$((RANDOM%2))
 			if [ $randomcheck -eq $ISFLIP ]
