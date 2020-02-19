@@ -56,7 +56,7 @@ case $choice in
 	$SINGLET)
 		getflip
 		getPercentage
-	   ;;
+		;;
 	$DOUBLET)
 		getflip
 		getPercentage
