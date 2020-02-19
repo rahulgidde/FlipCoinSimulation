@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 #TAKE INPUT FROM USER
 read -p "Enter The Number Of Times Coin Flip: " number
