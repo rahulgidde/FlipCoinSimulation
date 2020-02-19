@@ -13,13 +13,14 @@ declare -A flipCoin
 ISFLIP=1
 SINGLET=1
 DOUBLET=2
+TRIPLET=3
 
 #FLIP A COIN AND CHECK HEAD OR TAIL
 function getflip
 {
-	for (( index1=0; index1<$number; index1++ ))
+	for(( index1=0; index1<$number; index1++))
 	do
-		for (( index2=0; index2<$choice; index2++ ))
+		for(( index2=0; index2<$choice; index2++))
 		do
 			randomcheck=$((RANDOM%2))
 			if [ $randomcheck -eq $ISFLIP ]
@@ -35,15 +36,15 @@ function getflip
 		elif [ $choice -eq $DOUBLET ]
 		then
 			((flipCoin[$coinSide]++))
+		elif [ $choice -eq $TRIPLET ]
+		then
+			((flipCoin[$coinSide]++))
 		fi
 		coinSide=""
 	done
 }
 
-#PRINT COUNT OF ALL COMBINATION
-echo ${flipCoin[@]}
-
-#CALCULATE THE PERCENTAGE OF COMBINATION
+#FUNCTION TO FIND PERCENTAGE
 function getPercentage
 {
 	for index in ${!flipCoin[@]}
@@ -60,6 +61,10 @@ case $choice in
 		getPercentage
 		;;
 	$DOUBLET)
+		getflip
+		getPercentage
+		;;
+	$TRIPLET)
 		getflip
 		getPercentage
 		;;
