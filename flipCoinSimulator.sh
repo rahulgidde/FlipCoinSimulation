@@ -23,8 +23,8 @@ do
 			coinSide="T"
 		fi
 	done
-		((flipCoin[$coinSide]++))
-		coinSide=""
+	((flipCoin[$coinSide]++))
+	coinSide=""
 done
 
 #CALCULATE THE PERCENTAGE OF HEAD AND TAIL
