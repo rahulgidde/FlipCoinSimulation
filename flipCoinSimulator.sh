@@ -4,6 +4,7 @@
 read -p "Enter The Number Of Times Coin Flip: " number
 echo "1.Singlet"
 echo "2.Doublet"
+echo "3.Triplet"
 read -p "Enter Your Choice:" choice
 
 #DECLARTION OF DICTIONARY
@@ -54,19 +55,31 @@ function getPercentage
 	echo ${flipCoin[@]}
 }
 
+#SORT THE DICTIONARY AND FIND MAXIMUM WINNING COMBINATION
+function sorting
+{
+	for k in ${!flipCoin[@]}
+	do
+		echo $k '-' ${flipCoin[$k]}
+	done |  sort -rn -k3 | head -1
+}
+
 #FUNCTION CALL
 case $choice in
 	$SINGLET)
 		getflip
 		getPercentage
+		sorting
 		;;
 	$DOUBLET)
 		getflip
 		getPercentage
+		sorting
 		;;
 	$TRIPLET)
 		getflip
 		getPercentage
+		sorting
 		;;
 	*)
 		echo "Invalid choice:"
