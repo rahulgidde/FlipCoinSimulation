@@ -18,14 +18,16 @@ do
 		randomcheck=$((RANDOM%2))
 		if [ $randomcheck -eq $ISFLIP ]
 		then
-			coinSide+="H"
+			coinSide="H"
 		else
 			coinSide="T"
 		fi
 	done
 	((flipCoin[$coinSide]++))
-	coinSide=""
 done
+
+#PRINT COUNT OF ALL COMBINATION
+echo ${flipCoin[@]}
 
 #CALCULATE THE PERCENTAGE OF HEAD AND TAIL
 for index in ${!flipCoin[@]}
