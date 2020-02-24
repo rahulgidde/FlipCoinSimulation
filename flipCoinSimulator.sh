@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#CONSTANT
+ISFLIP=1
+SINGLET=1
+DOUBLET=2
+TRIPLET=3
+
+#DECLARTION OF DICTIONARY
+declare -A flipCoin
+
 #TAKE INPUT FROM USER
 read -p "Enter The Number Of Times Coin Flip: " number
 echo "1.Singlet"
@@ -7,46 +16,29 @@ echo "2.Doublet"
 echo "3.Triplet"
 read -p "Enter Your Choice:" choice
 
-#DECLARTION OF DICTIONARY
-declare -A flipCoin
-
-#CONSTANT
-ISFLIP=1
-SINGLET=1
-DOUBLET=2
-TRIPLET=3
-
 #FLIP A COIN AND CHECK HEAD OR TAIL
-function getflip
+function getflip()
 {
+	local NUMBER_OF_COIN=$1
 	for(( index1=0; index1<$number; index1++ ))
 	do
-		for(( index2=0; index2<$choice; index2++ ))
+		for(( index2=0; index2<$NUMBER_OF_COIN; index2++ ))
 		do
-			randomcheck=$((RANDOM%2))
-			if [ $randomcheck -eq $ISFLIP ]
+			randomCheck=$((RANDOM%2))
+			if [ $randomCheck -eq $ISFLIP ]
 			then
 				coinSide+="H"
 			else
 				coinSide+="T"
 			fi
 		done
-		if [ $choice -eq $SINGLET ]
-		then
-			((flipCoin[$coinSide]++))
-		elif [ $choice -eq $DOUBLET ]
-		then
-			((flipCoin[$coinSide]++))
-		elif [ $choice -eq $TRIPLET ]
-		then
-			((flipCoin[$coinSide]++))
-		fi
+		((flipCoin[$coinSide]++))
 		coinSide=""
 	done
 }
 
 #FUNCTION TO FIND PERCENTAGE
-function getPercentage
+function getPercentage()
 {
 	for index in ${!flipCoin[@]}
 	do
@@ -56,7 +48,7 @@ function getPercentage
 }
 
 #SORT THE DICTIONARY AND FIND MAXIMUM WINNING COMBINATION
-function sorting
+function sorting()
 {
 	for k in ${!flipCoin[@]}
 	do
@@ -67,19 +59,19 @@ function sorting
 #FUNCTION CALL
 case $choice in
 	$SINGLET)
-		getflip
-		getPercentage
-		sorting
+		getflip $choice
+		getPercentage ${flipCoin[@]}
+		sorting ${flipCoin[@]}
 		;;
 	$DOUBLET)
-		getflip
-		getPercentage
-		sorting
+		getflip $choice
+		getPercentage ${flipCoin[@]}
+		sorting ${flipCoin[@]}
 		;;
 	$TRIPLET)
-		getflip
-		getPercentage
-		sorting
+		getflip $choice
+		getPercentage ${flipCoin[@]}
+		sorting ${flipCoin[@]}
 		;;
 	*)
 		echo "Invalid choice:"
